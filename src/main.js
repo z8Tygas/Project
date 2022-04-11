@@ -2,6 +2,7 @@ let scenes = []
 scenes.push(preloadScene);
 scenes.push(startScene);
 scenes.push(preGameScene);
+scenes.push(gameScene);
 
 var config = {
 	type: Phaser.CANVAS,
