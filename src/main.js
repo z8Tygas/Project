@@ -1,6 +1,7 @@
 let scenes = []
 scenes.push(preloadScene);
 scenes.push(startScene);
+// scenes.push(preGameScene);
 
 var config = {
 	type: Phaser.CANVAS,
@@ -23,6 +24,3 @@ var config = {
 
 var game = new Phaser.Game(config);
 game.scale.fullscreenTarget = document.getElementById(config.parent);
-
-var userData = new playerData();
-var infoUser = new loginInfo();

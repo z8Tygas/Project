@@ -81,14 +81,15 @@ class startScene extends Phaser.Scene{
             durantion : 1000,
             alpha: { start: 1, to: 0.45 },
             ease:'Linear',
-            
         });
         this.tweens.add({
-            targets: [this.info, this.credits],
+            targets: [this.info, this.credits,
+                      this.btPlay, this.boneco,
+                      this.title1, this.title2],
+            delay: 100,
             durantion : 1000,
-            alpha: { start: 1, to: 0 },
-            ease:'Linear',
-            
+            x: '-=' + game.config.width,
+            ease: 'power2'
         });
         this.scene.transition({
             target: 'preGameScene',
@@ -111,7 +112,7 @@ class startScene extends Phaser.Scene{
             ease:'Linear',
         });
       }
-    }, this ) ;
+    }, this );
 
     /* 
     this.aGrid.show();

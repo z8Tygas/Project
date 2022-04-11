@@ -7,9 +7,6 @@ class preloadScene extends Phaser.Scene {
   }
   
   preload() {
-    
-    sessionVerify();
-
     let x0 = this.game.config.width * 0.1;
     let xSize = this.game.config.width * 0.8;
 
@@ -44,7 +41,10 @@ class preloadScene extends Phaser.Scene {
     this.load.image("titulo2", "assets/menu/titulo2.png");
     this.load.image("boneco", "assets/menu/boneco.png");
 
-    // ---------- PIECES  ---------
+    // ---------- Pre Game / difficulty  -----------
+    this.load.image("facil", "assets/facil.png")
+
+    // ---------- PIECES  -----------
     this.load.image("piece1", "assets/pieces/peca1.png");
     this.load.image("piece2", "assets/pieces/peca2.png");
     this.load.image("piece3", "assets/pieces/peca3.png");
