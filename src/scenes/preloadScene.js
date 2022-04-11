@@ -43,6 +43,36 @@ class preloadScene extends Phaser.Scene {
     this.load.image("titulo", "assets/menu/titulo.png");
     this.load.image("titulo2", "assets/menu/titulo2.png");
     this.load.image("boneco", "assets/menu/boneco.png");
+
+    // ---------- PIECES  ---------
+    this.load.image("piece1", "assets/pieces/peca1.png");
+    this.load.image("piece2", "assets/pieces/peca2.png");
+    this.load.image("piece3", "assets/pieces/peca3.png");
+    this.load.image("piece4", "assets/pieces/peca4.png");
+    this.load.image("piece5", "assets/pieces/peca5.png");
+    this.load.image("piece6", "assets/pieces/peca6.png");
+    this.load.image("piece7", "assets/pieces/peca7.png");
+    this.load.image("piece8", "assets/pieces/peca8.png");
+    this.load.image("piece9", "assets/pieces/peca9.png");
+    this.load.image("piece10", "assets/pieces/peca10.png");
+    this.load.image("piece11", "assets/pieces/peca11.png");
+    this.load.image("piece12", "assets/pieces/peca12.png");
+    this.load.image("piece13", "assets/pieces/peca13.png");
+    this.load.image("piece14", "assets/pieces/peca14.png");
+    this.load.image("piece15", "assets/pieces/peca15.png");
+    this.load.image("piece16", "assets/pieces/peca16.png");
+    this.load.image("piece17", "assets/pieces/peca17.png");
+    this.load.image("piece18", "assets/pieces/peca18.png");
+    this.load.image("piece19", "assets/pieces/peca19.png");
+    this.load.image("piece20", "assets/pieces/peca20.png");
+    this.load.image("piece21", "assets/pieces/peca21.png");
+    this.load.image("piece22", "assets/pieces/peca22.png");
+    this.load.image("piece23", "assets/pieces/peca23.png");
+    this.load.image("piece24", "assets/pieces/peca24.png");
+    this.load.image("piece25", "assets/pieces/peca25.png");
+    this.load.image("piece26", "assets/pieces/peca26.png");
+    this.load.image("piece27", "assets/pieces/peca27.png");
+    this.load.image("piece28", "assets/pieces/peca28.png");
   }
   
   // Start game and stop preloader
