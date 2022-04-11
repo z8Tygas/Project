@@ -79,7 +79,7 @@ class startScene extends Phaser.Scene{
         this.tweens.add({
             targets: this.background,
             durantion : 1000,
-            alpha: { start: 1, to: 0.45 },
+            alpha: { start: 1, to: 0 },
             ease:'Linear',
         });
         this.tweens.add({
@@ -95,11 +95,10 @@ class startScene extends Phaser.Scene{
             target: 'preGameScene',
             duration: 1000,
             moveBelow: true,
-            onUpdate: this.transitionOut
         });
     }, this);
     
-
+    // got here from ...
     this.events.on('transitionstart', function(fromScene, duration){
       if ( fromScene === this.scene.get('preloadScene')   ) {
         this.tweens.add({
@@ -110,6 +109,23 @@ class startScene extends Phaser.Scene{
             durantion : 5000,
             alpha: { start: 0, to: 1 },
             ease:'Linear',
+        });
+      }
+      if ( fromScene === this.scene.get('preGameScene')   ) {
+        this.tweens.add({
+          targets: this.background,
+          durantion : 1000,
+          alpha: { start: 0, to: 1 },
+          ease:'Linear',
+        });
+        this.tweens.add({
+            targets: [this.info, this.credits,
+                      this.btPlay, this.boneco,
+                      this.title1, this.title2],
+            delay: 100,
+            durantion : 1000,
+            x: '+=' + game.config.width,
+            ease: 'power2'
         });
       }
     }, this );
