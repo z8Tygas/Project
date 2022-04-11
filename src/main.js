@@ -12,13 +12,13 @@ var config = {
 		height: 1200,
 	},
 	render: {
-        pixelArt: false
-    },
-    backgroundColor: "#0060ff",
-    parent: 'game',
-    dom: {
-        createContainer: true
-    },
+		pixelArt: false
+	},
+	backgroundColor: "#0060ff",
+	parent: 'game',
+	dom: {
+		createContainer: true
+	},
 	scene: scenes,
 };
 

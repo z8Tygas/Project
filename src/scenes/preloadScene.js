@@ -5,7 +5,7 @@ class preloadScene extends Phaser.Scene {
   constructor() {
     super("preloadScene");
   }
-  
+
   preload() {
     let x0 = this.game.config.width * 0.1;
     let xSize = this.game.config.width * 0.8;
@@ -17,7 +17,7 @@ class preloadScene extends Phaser.Scene {
     this.progressBarIn = this.add.graphics();
 
     let rectout = new Phaser.Geom.Rectangle(x0, y0, xSize, ySize);
-    let rectin = new Phaser.Geom.Rectangle(x0 + (xSize*0.01), y0 + (ySize*0.05), xSize - 2*xSize*0.01,  ySize - 2*ySize*0.05);
+    let rectin = new Phaser.Geom.Rectangle(x0 + (xSize * 0.01), y0 + (ySize * 0.05), xSize - 2 * xSize * 0.01, ySize - 2 * ySize * 0.05);
 
     this.progressBarOut.fillStyle(0xffffdd, 1);
     this.progressBarOut.fillRectShape(rectout);
@@ -25,13 +25,13 @@ class preloadScene extends Phaser.Scene {
     this.progressBarIn.fillStyle(0xfbdc55, 1);
     this.progressBarIn.fillRectShape(rectin);
 
-    this.load.on('progress', (value) =>{
-      let rectin = new Phaser.Geom.Rectangle(x0 + (xSize*0.01), y0 + (ySize*0.05), value*(xSize - 2*xSize*0.01),  ySize - 2*ySize*0.05);
+    this.load.on('progress', (value) => {
+      let rectin = new Phaser.Geom.Rectangle(x0 + (xSize * 0.01), y0 + (ySize * 0.05), value * (xSize - 2 * xSize * 0.01), ySize - 2 * ySize * 0.05);
       this.progressBarIn.clear();
       this.progressBarIn.fillStyle(0xfbdc55, 1);
       this.progressBarIn.fillRectShape(rectin);
     })
-    
+
     // ---------- Start Screen ---------
     this.load.image("background", "assets/menu/backgroundRect.png");
     this.load.image("btPlay", "assets/menu/btPlay.png");
@@ -42,8 +42,10 @@ class preloadScene extends Phaser.Scene {
     this.load.image("boneco", "assets/menu/boneco.png");
 
     // ---------- Pre Game / difficulty  -----------
-    this.load.image("facil", "assets/facil.png")
-    this.load.image("back", "assets/back.png")
+    this.load.image("back", "assets/preGameScene/back.png")
+    this.load.image("facil", "assets/preGameScene/facil.png")
+    this.load.image("medio", "assets/preGameScene/medio.png")
+    this.load.image("dificil", "assets/preGameScene/dificil.png")
 
     // ---------- PIECES  -----------
     this.load.image("piece1", "assets/pieces/peca1.png");
@@ -75,7 +77,7 @@ class preloadScene extends Phaser.Scene {
     this.load.image("piece27", "assets/pieces/peca27.png");
     this.load.image("piece28", "assets/pieces/peca28.png");
   }
-  
+
   // Start game and stop preloader
   create() {
     this.progressBarIn.destroy();
@@ -84,10 +86,10 @@ class preloadScene extends Phaser.Scene {
     this.scene.transition({
       target: 'startScene',
       duration: 1000,
-      onComplete : () => {this.scene.start('startScene'); }
-    });    
+      onComplete: () => { this.scene.start('startScene'); }
+    });
   }
 
   // Code to execute every frame
-  update(){}
+  update() { }
 }
