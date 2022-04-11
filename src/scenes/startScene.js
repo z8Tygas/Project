@@ -76,16 +76,12 @@ class startScene extends Phaser.Scene {
 
     // --------------- Transicoes --------------------
     this.btPlay.on('pointerup', function (pointer) {
-      this.tweens.add({
-        targets: this.background,
-        durantion: 1000,
-        alpha: { start: 1, to: 0 },
-        ease: 'Linear',
-      });
+      this.background.alpha = 0;
+      
       this.tweens.add({
         targets: [this.info, this.credits,
-                  this.btPlay, this.boneco,
-                  this.title1, this.title2],
+        this.btPlay, this.boneco,
+        this.title1, this.title2],
         delay: 100,
         durantion: 1000,
         x: '-=' + game.config.width,
@@ -104,28 +100,35 @@ class startScene extends Phaser.Scene {
         this.tweens.add({
           delay: 100,
           targets: [this.background, this.info,
-                    this.btPlay, this.credits, this.boneco,
-                    this.title1, this.title2],
-          durantion: 5000,
+          this.btPlay, this.credits, this.boneco,
+          this.title1, this.title2],
+          durantion: 3000,
           alpha: { start: 0, to: 1 },
           ease: 'Linear',
         });
       }
       if (fromScene === this.scene.get('preGameScene')) {
         this.tweens.add({
+          delay: 100,
           targets: this.background,
           durantion: 1000,
-          alpha: { start: 0, to: 1 },
-          ease: 'Linear',
+          alpha: { start: 0.45, to: 1 },
+          ease: 'Linear'
         });
+
+        this.title1.x -= game.config.width;
+        this.title2.x -= game.config.width;
+        this.btPlay.x -= game.config.width;
+        this.boneco.x -= game.config.width;
+        this.credits.x -= game.config.width;
+        this.info.x -= game.config.width;
         this.tweens.add({
-          targets: [this.info, this.credits,
-                    this.btPlay, this.boneco,
-                    this.title1, this.title2],
           delay: 100,
-          durantion: 1000,
+          targets: [this.title1, this.title2, this.btPlay, this.info, this.credits, this.boneco],
           x: '+=' + game.config.width,
-          ease: 'power2'
+          durantion: 5000,
+          ease: 'power2',
+
         });
       }
     }, this);

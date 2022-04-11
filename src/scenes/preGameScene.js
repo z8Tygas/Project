@@ -80,12 +80,7 @@ class preGameScene extends Phaser.Scene {
         // --------------- Transicoes --------------------
 
         this.back.on('pointerup', function (pointer) {
-            this.tweens.add({
-                targets: this.background,
-                durantion: 1000,
-                alpha: { start: 0.45, to: 0 },
-                ease: 'Linear',
-            });
+            this.background.alpha = 0;
             this.tweens.add({
                 targets: [this.back, this.facil, this.medio, this.dificil],
                 delay: 100,
@@ -94,7 +89,7 @@ class preGameScene extends Phaser.Scene {
                 ease: 'power2'
             });
             this.scene.transition({
-                target: 'StartScene',
+                target: 'startScene',
                 duration: 1000,
                 moveBelow: true,
             });
