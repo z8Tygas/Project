@@ -20,6 +20,10 @@ class DoublyLinkedList {
         this.tail = this.head;
     }
 
+    changeHead(value){
+        this.head.value = value;
+    }
+
     printList() {
         let array = [];
         let currentList = this.head;

@@ -99,7 +99,7 @@ class gameScene extends Phaser.Scene {
         this.placePiece(5, true);
         this.placePiece(6, true);
         this.placePiece(7, true);
-        this.placePiece(7, true);
+        this.placePiece(8, true);
         this.placePiece(9, true);
         this.placePiece(10, true);
         this.placePiece(11, true);
@@ -115,11 +115,11 @@ class gameScene extends Phaser.Scene {
         this.placePiece(21, true);
         this.placePiece(22, true);
         this.placePiece(23, true);
-        this.placePiece(25, true);
         this.placePiece(24, true);
+        this.placePiece(25, true);
         this.placePiece(26, true);
         this.placePiece(27, true);
-        this.placePiece(28, true); // this one has error
+        this.placePiece(28, true);
         this.aGrid.show();
         this.aGrid.showNumbers();
 
@@ -182,8 +182,8 @@ class gameScene extends Phaser.Scene {
     */
     placePiece(piece, head) {
         let pos = 0;
-        if (this.firstMove == true) {
-            table = new DoublyLinkedList(piece);
+        if (firstMove == true) {
+            table.changeHead(piece);
             firstMove = false;
         }
         else if (head == true) {
@@ -194,7 +194,7 @@ class gameScene extends Phaser.Scene {
             table.append(piece);
             pos = table.tail.pos;
         }
-
+        console.log(pos);
         let index = pos2Grid.get(pos);
 
         if (index.length == 1) {
@@ -204,11 +204,8 @@ class gameScene extends Phaser.Scene {
         }
         else {
             let indice = index[0];
-            console.log(indice);
             let displacex = index[1];
-            console.log(displacex);
             let displacey = index[2];
-            console.log(displacey);
             pieces[piece].setScale(0.985);
             pieces[piece].setOrigin(displacex, displacey);
             this.aGrid.placeAtIndex(indice, pieces[piece]);
