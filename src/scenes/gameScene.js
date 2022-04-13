@@ -3,7 +3,12 @@ class gameScene extends Phaser.Scene {
         super("gameScene");
     }
 
-    init() { }
+    /*
+    data: { dificulty: 1 }
+    */
+    init(data) {
+        this.dificulty = data.dificulty;
+    }
 
     create() {
         var gridConfig = {
@@ -17,7 +22,41 @@ class gameScene extends Phaser.Scene {
         this.backgroundGame.setScale(1.7);
 
         this.back2 = this.add.image(0, 0, 'back');
-        this.aGrid.placeAtIndex(211, this.back2);
+        this.back2.setOrigin(-0.1, -0.1);
+        this.aGrid.placeAtIndex(0, this.back2);
+
+        this.piece1 = this.add.image(0,0, 'piece1');
+        this.piece1.setScale(0.9);
+        this.piece1.angle = 90;
+        this.aGrid.placeAtIndex(219, this.piece1);
+        
+        this.piece2 = this.add.image(0,0, 'piece2');
+        this.piece2.setScale(0.9);
+        this.piece2.angle = 90;
+        this.aGrid.placeAtIndex(217, this.piece2);
+
+        this.piece3 = this.add.image(0,0, 'piece3');
+        this.piece3.setScale(0.9);
+        this.piece3.angle = 90;
+        this.aGrid.placeAtIndex(215, this.piece3);
+        
+        this.piece4 = this.add.image(0,0, 'piece4');
+        this.piece4.setScale(0.9);
+        this.piece4.angle = 90;
+        this.aGrid.placeAtIndex(213, this.piece4);
+        
+        this.piece5 = this.add.image(0,0, 'piece5');
+        this.piece5.setScale(0.9);
+        this.piece5.angle = 90;
+        this.aGrid.placeAtIndex(211, this.piece5);
+        
+        this.piece6 = this.add.image(0,0, 'piece6');
+        this.piece6.setScale(0.75);
+        this.piece6.setOrigin(0.5, 0.5);
+        this.aGrid.placeAtIndex(150, this.piece6);
+
+        this.aGrid.show();
+        this.aGrid.showNumbers();
 
         // --------------- Efeitos nas imagens --------------------
 

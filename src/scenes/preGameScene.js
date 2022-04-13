@@ -108,6 +108,7 @@ class preGameScene extends Phaser.Scene {
                 target: 'gameScene',
                 duration: 1000,
                 moveBelow: true,
+                data: { dificulty: 1}
             });
         }, this);
 
