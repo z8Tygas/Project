@@ -21,15 +21,15 @@ class preGameScene extends Phaser.Scene {
 
         this.facil = this.add.image(0, 0, 'facil');
         this.facil.setScale(0.5);
-        this.aGrid.placeAtIndex(116, this.facil);
+        this.aGrid.placeAtIndex(115, this.facil);
 
         this.medio = this.add.image(0, 0, 'medio');
         this.medio.setScale(0.5);
-        this.aGrid.placeAtIndex(179, this.medio);
+        this.aGrid.placeAtIndex(178, this.medio);
 
         this.dificil = this.add.image(0, 0, 'dificil');
         this.dificil.setScale(0.5);
-        this.aGrid.placeAtIndex(242, this.dificil);
+        this.aGrid.placeAtIndex(241, this.dificil);
 
         /* this.aGrid.show();
         this.aGrid.showNumbers(); */
@@ -95,6 +95,22 @@ class preGameScene extends Phaser.Scene {
             });
         }, this);
 
+        this.facil.on('pointerup', function (pointer) {
+            this.background.alpha = 0;
+            this.tweens.add({
+                targets: [this.back, this.facil, this.medio, this.dificil],
+                delay: 100,
+                durantion: 1000,
+                x: '-=' + game.config.width,
+                ease: 'power2'
+            });
+            this.scene.transition({
+                target: 'gameScene',
+                duration: 1000,
+                moveBelow: true,
+            });
+        }, this);
+
         // got here from ...
         this.events.on('transitionstart', function (fromScene, duration) {
             if (fromScene === this.scene.get('startScene')) {
@@ -109,11 +125,35 @@ class preGameScene extends Phaser.Scene {
                 this.facil.x += game.config.width;
                 this.medio.x += game.config.width;
                 this.dificil.x += game.config.width;
+
                 this.tweens.add({
                     delay: 100,
                     targets: [this.facil, this.medio, this.dificil, this.back],
                     durantion: 1000,
                     x: '-=' + game.config.width,
+                    ease: 'Power2'
+                });
+            }
+
+            if (fromScene === this.scene.get('gameScene')) {
+                this.tweens.add({
+                    delay: 100,
+                    targets: [this.background],
+                    durantion: 5000,
+                    alpha: { start: 1, to: 0.45 },
+                    ease: 'Linear',
+                });
+
+                this.back.x -= game.config.width;
+                this.facil.x -= game.config.width;
+                this.medio.x -= game.config.width;
+                this.dificil.x -= game.config.width;
+
+                this.tweens.add({
+                    delay: 100,
+                    targets: [this.back, this.facil, this.medio, this.dificil],
+                    durantion: 5000,
+                    x: '+=' + game.config.width,
                     ease: 'Power2'
                 });
             }

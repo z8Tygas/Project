@@ -47,6 +47,9 @@ class preloadScene extends Phaser.Scene {
     this.load.image("medio", "assets/preGameScene/medio.png")
     this.load.image("dificil", "assets/preGameScene/dificil.png")
 
+    // ---------- Game Scene ---------
+    this.load.image("backgroundGame", "assets/menu/background.png")
+
     // ---------- PIECES  -----------
     this.load.image("piece1", "assets/pieces/peca1.png");
     this.load.image("piece2", "assets/pieces/peca2.png");
