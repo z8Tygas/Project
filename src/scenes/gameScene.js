@@ -1,15 +1,77 @@
+let pos2Grid = new Map();
+let pieces = [];
+let table = new DoublyLinkedList(0);
+let firstMove = true;
+
 class gameScene extends Phaser.Scene {
     constructor() {
         super("gameScene");
     }
 
+    
     /*
     data: { dificulty: 1 }
     */
-    init(data) {
-        this.dificulty = data.dificulty;
+   init(data) {
+       this.dificulty = data.dificulty;
+       
+       pos2Grid.set(-27, [100]);
+       pos2Grid.set(-26, [98]);
+       pos2Grid.set(-25, [96]);
+       pos2Grid.set(-24, [94]);
+       pos2Grid.set(-23, [92]);
+       pos2Grid.set(-22, [90]);
+       pos2Grid.set(-21, [88]);
+       pos2Grid.set(-20, [128, 0.09, 0.78]); // Special
+       pos2Grid.set(-19, [130]);
+       pos2Grid.set(-18, [132]);
+       pos2Grid.set(-17, [134]);
+       pos2Grid.set(-16, [136]);
+       pos2Grid.set(-15, [138]);
+       pos2Grid.set(-14, [140]);
+       pos2Grid.set(-13, [142]);
+       pos2Grid.set(-12, [186, 0.91, 0.78]); // Special
+       pos2Grid.set(-11, [184]);
+       pos2Grid.set(-10, [182]);
+       pos2Grid.set(-9, [180]);
+       pos2Grid.set(-8, [178]);
+       pos2Grid.set(-7, [176]);
+       pos2Grid.set(-6, [174]);
+       pos2Grid.set(-5, [172]);
+       pos2Grid.set(-4, [212, 0.09, 0.78]); // Special
+       pos2Grid.set(-3, [214]);
+       pos2Grid.set(-2, [216]);
+       pos2Grid.set(-1, [218]);
+       pos2Grid.set(0, [220]);
+       pos2Grid.set(1, [222]);
+       pos2Grid.set(2, [224]);
+       pos2Grid.set(3, [226]);
+       pos2Grid.set(4, [228, 0.91, 0.22]); // Special
+       pos2Grid.set(5, [268]);
+       pos2Grid.set(6, [266]);
+       pos2Grid.set(7, [264]);
+       pos2Grid.set(8, [262]);
+       pos2Grid.set(9, [260]);
+       pos2Grid.set(10, [258]);
+       pos2Grid.set(11, [256]);
+       pos2Grid.set(12, [254, 0.91, 0.22]); // Special
+       pos2Grid.set(13, [298]);
+       pos2Grid.set(14, [300]);
+       pos2Grid.set(15, [302]);
+       pos2Grid.set(16, [304]);
+       pos2Grid.set(17, [306]);
+       pos2Grid.set(18, [308]);
+       pos2Grid.set(19, [310]);
+       pos2Grid.set(20, [312, 0.91, 0.22]); // Special
+       pos2Grid.set(21, [352]);
+       pos2Grid.set(22, [350]);
+       pos2Grid.set(23, [348]);
+       pos2Grid.set(24, [346]);
+       pos2Grid.set(25, [344]);
+       pos2Grid.set(26, [342]);
+       pos2Grid.set(27, [340]);
     }
-
+    
     create() {
         var gridConfig = {
             'scene': this,
@@ -20,153 +82,47 @@ class gameScene extends Phaser.Scene {
         this.backgroundGame = this.add.image(0, 0, "backgroundGame");
         this.aGrid.placeAtIndex(220, this.backgroundGame);
         this.backgroundGame.setScale(1.7);
+        
+
+        for (let i = 1; i <= 28; i++) {
+            pieces[i] = this.add.image(50000 ,  50000, "piece".concat(i));
+        }
 
         this.back2 = this.add.image(0, 0, 'back');
         this.back2.setOrigin(-0.1, -0.1);
         this.aGrid.placeAtIndex(0, this.back2);
 
-        this.piece1 = this.add.image(0,0, 'piece1');
-        this.piece1.setScale(0.9);
-        this.piece1.angle = 90;
-        this.aGrid.placeAtIndex(219, this.piece1);
-        
-        this.piece2 = this.add.image(0,0, 'piece2');
-        this.piece2.setScale(0.9);
-        this.piece2.angle = 90;
-        this.aGrid.placeAtIndex(217, this.piece2);
+        this.placePiece(1, true);
+        this.placePiece(2, true);
+        this.placePiece(3, true);
+        this.placePiece(4, true);
+        this.placePiece(5, true);
+        this.placePiece(6, true);
+        this.placePiece(7, true);
+        this.placePiece(7, true);
+        this.placePiece(9, true);
+        this.placePiece(10, true);
+        this.placePiece(11, true);
+        this.placePiece(12, true);
+        this.placePiece(13, true);
+        this.placePiece(14, true);
+        this.placePiece(15, true);
+        this.placePiece(16, true);
+        this.placePiece(17, true);
+        this.placePiece(18, true);
+        this.placePiece(19, true);
+        this.placePiece(20, true);
+        this.placePiece(21, true);
+        this.placePiece(22, true);
+        this.placePiece(23, true);
+        this.placePiece(25, true);
+        this.placePiece(24, true);
+        this.placePiece(26, true);
+        this.placePiece(27, true);
+        this.placePiece(28, true); // this one has error
+        this.aGrid.show();
+        this.aGrid.showNumbers();
 
-        this.piece3 = this.add.image(0,0, 'piece3');
-        this.piece3.setScale(0.9);
-        this.piece3.angle = 90;
-        this.aGrid.placeAtIndex(215, this.piece3);
-        
-        this.piece4 = this.add.image(0,0, 'piece4');
-        this.piece4.setScale(0.9);
-        this.piece4.angle = 90;
-        this.aGrid.placeAtIndex(213, this.piece4);
-        // corner up
-        this.piece6 = this.add.image(0,0, 'piece6');
-        this.piece6.setScale(0.985);
-        this.piece6.setOrigin(0.09, 0.78);
-        this.aGrid.placeAtIndex(211, this.piece6);
-
-        this.piece5 = this.add.image(0,0, 'piece5');
-        this.piece5.setScale(0.9);
-        this.piece5.angle = 90;
-        this.aGrid.placeAtIndex(171, this.piece5);
-
-        this.piece7 = this.add.image(0,0, 'piece7');
-        this.piece7.setScale(0.9);
-        this.piece7.angle = 90;
-        this.aGrid.placeAtIndex(173, this.piece7);
-
-        this.piece8 = this.add.image(0,0, 'piece8');
-        this.piece8.setScale(0.9);
-        this.piece8.angle = 90;
-        this.aGrid.placeAtIndex(175, this.piece8);
-
-        this.piece9 = this.add.image(0,0, 'piece9');
-        this.piece9.setScale(0.9);
-        this.piece9.angle = 90;
-        this.aGrid.placeAtIndex(177, this.piece9);
-
-        this.piece10 = this.add.image(0,0, 'piece10');
-        this.piece10.setScale(0.9);
-        this.piece10.angle = 90;
-        this.aGrid.placeAtIndex(179, this.piece10);
-
-        this.piece11 = this.add.image(0,0, 'piece11');
-        this.piece11.setScale(0.9);
-        this.piece11.angle = 90;
-        this.aGrid.placeAtIndex(181, this.piece11);
-
-        this.piece12 = this.add.image(0,0, 'piece12');
-        this.piece12.setScale(0.9);
-        this.piece12.angle = 90;
-        this.aGrid.placeAtIndex(183, this.piece12);
-
-        this.piece13 = this.add.image(0,0, 'piece13');
-        this.piece13.setScale(0.9);
-        this.piece13.angle = 90;
-        this.aGrid.placeAtIndex(185, this.piece13);
-        // corner 1 up
-        this.piece14 = this.add.image(0,0, 'piece14');
-        this.piece14.setScale(0.985);
-        this.piece14.setOrigin(0.91, 0.78);
-        this.aGrid.placeAtIndex(187, this.piece14);
-
-        this.piece15 = this.add.image(0,0, 'piece15');
-        this.piece15.setScale(0.9);
-        this.piece15.angle = 90;
-        this.aGrid.placeAtIndex(143, this.piece15);
-
-        this.piece16 = this.add.image(0,0, 'piece16');
-        this.piece16.setScale(0.9);
-        this.piece16.angle = 90;
-        this.aGrid.placeAtIndex(141, this.piece16);
-
-        this.piece17 = this.add.image(0,0, 'piece17');
-        this.piece17.setScale(0.9);
-        this.piece17.angle = 90;
-        this.aGrid.placeAtIndex(139, this.piece17);
-
-        this.piece18 = this.add.image(0,0, 'piece18');
-        this.piece18.setScale(0.9);
-        this.piece18.angle = 90;
-        this.aGrid.placeAtIndex(137, this.piece18);
-
-        this.piece19 = this.add.image(0,0, 'piece19');
-        this.piece19.setScale(0.9);
-        this.piece19.angle = 90;
-        this.aGrid.placeAtIndex(135, this.piece19);
-
-        this.piece20 = this.add.image(0,0, 'piece20');
-        this.piece20.setScale(0.9);
-        this.piece20.angle = 90;
-        this.aGrid.placeAtIndex(133, this.piece20);
-
-        this.piece21 = this.add.image(0,0, 'piece21');
-        this.piece21.setScale(0.9);
-        this.piece21.angle = 90;
-        this.aGrid.placeAtIndex(131, this.piece21);
-
-        this.piece22 = this.add.image(0,0, 'piece22');
-        this.piece22.setScale(0.9);
-        this.piece22.angle = 90;
-        this.aGrid.placeAtIndex(129, this.piece22);
-        //corner 2 up
-        this.piece23 = this.add.image(0,0, 'piece23');
-        this.piece23.setScale(0.985);
-        this.piece23.setOrigin(0.09, 0.78);
-        this.aGrid.placeAtIndex(127, this.piece23);
-
-        this.piece24 = this.add.image(0,0, 'piece24');
-        this.piece24.setScale(0.9);
-        this.piece24.angle = 90;
-        this.aGrid.placeAtIndex(87, this.piece24);
-
-        this.piece25 = this.add.image(0,0, 'piece25');
-        this.piece25.setScale(0.9);
-        this.piece25.angle = 90;
-        this.aGrid.placeAtIndex(89, this.piece25);
-
-        this.piece26 = this.add.image(0,0, 'piece26');
-        this.piece26.setScale(0.9);
-        this.piece26.angle = 90;
-        this.aGrid.placeAtIndex(91, this.piece26);
-
-        this.piece27 = this.add.image(0,0, 'piece27');
-        this.piece27.setScale(0.9);
-        this.piece27.angle = 90;
-        this.aGrid.placeAtIndex(93, this.piece27);
-
-        this.piece28 = this.add.image(0,0, 'piece28');
-        this.piece28.setScale(0.9);
-        this.piece28.angle = 90;
-        this.aGrid.placeAtIndex(95, this.piece28);
-
-        /* this.aGrid.show();
-        this.aGrid.showNumbers(); */
 
         // --------------- Efeitos nas imagens --------------------
 
@@ -218,5 +174,44 @@ class gameScene extends Phaser.Scene {
                 });
             }
         }, this);
+    }
+
+    /**
+    * @param piece is an int that is the piece number
+    * @param head is true if its to place left false if right
+    */
+    placePiece(piece, head) {
+        let pos = 0;
+        if (this.firstMove == true) {
+            table = new DoublyLinkedList(piece);
+            firstMove = false;
+        }
+        else if (head == true) {
+            table.prepend(piece);
+            pos = table.head.pos;
+        }
+        else {
+            table.append(piece);
+            pos = table.tail.pos;
+        }
+
+        let index = pos2Grid.get(pos);
+
+        if (index.length == 1) {
+            pieces[piece].angle = 90;
+            pieces[piece].setScale(0.9);
+            this.aGrid.placeAtIndex(index[0], pieces[piece]);
+        }
+        else {
+            let indice = index[0];
+            console.log(indice);
+            let displacex = index[1];
+            console.log(displacex);
+            let displacey = index[2];
+            console.log(displacey);
+            pieces[piece].setScale(0.985);
+            pieces[piece].setOrigin(displacex, displacey);
+            this.aGrid.placeAtIndex(indice, pieces[piece]);
+        }
     }
 }
