@@ -97,31 +97,29 @@ class gameScene extends Phaser.Scene {
         this.placePiece(3, true);
         this.placePiece(4, true);
         this.placePiece(5, true);
-        this.placePiece(6, true);
+        this.placePiece(6, false);
         this.placePiece(7, true);
         this.placePiece(8, true);
         this.placePiece(9, true);
         this.placePiece(10, true);
         this.placePiece(11, true);
         this.placePiece(12, true);
-        this.placePiece(13, true);
+        this.placePiece(13, false);
         this.placePiece(14, true);
         this.placePiece(15, true);
         this.placePiece(16, true);
         this.placePiece(17, true);
-        this.placePiece(18, true);
+        this.placePiece(18, false);
         this.placePiece(19, true);
         this.placePiece(20, true);
-        this.placePiece(21, true);
+        this.placePiece(21, false);
         this.placePiece(22, true);
         this.placePiece(23, true);
-        this.placePiece(24, true);
+        this.placePiece(24, false);
         this.placePiece(25, true);
         this.placePiece(26, true);
-        this.placePiece(27, true);
+        this.placePiece(27, false);
         this.placePiece(28, true);
-        this.aGrid.show();
-        this.aGrid.showNumbers();
 
 
         // --------------- Efeitos nas imagens --------------------

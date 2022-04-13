@@ -37,7 +37,7 @@ class DoublyLinkedList {
     }
 
     append(value) {
-        letpos = this.tail.pos;
+        let pos = this.tail.pos;
         let newNode = new Node(value, pos+1);
 
         this.tail.next = newNode;
